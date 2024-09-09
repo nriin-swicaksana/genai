@@ -1,0 +1,7 @@
+groq
+Flask==2.1.2
+Werkzeug==2.2.3
+FastAPI==0.85.0
+uvicorn==0.18.2
+gunicorn==20.1.0
+requests==2.28.1
