@@ -9,18 +9,24 @@ history = []
 def main():
     st.title("Nutry Foody Chatbot")
     st.write("Ask anything about nutrition and fitness!")
+    
+    inquiry = st.text_input("Enter your inquiry:")
 
-    inquiry = st.text_input("Your inquiry:")
+    if inquiry:
+        st.write(f"Human: {inquiry}")
 
-    if st.button("Send"):
+        # Check for duplicate inquiry
         if history and history[-1]['inquiry'] == inquiry:
             answer = "Your inquiry is the same as before, please change the inquiry."
         else:
-            context = {"inquiry": inquiry, "history": history}
-            answer = reply(context)
+            # Define stream if necessary (for this example, it's just a placeholder)
+            def stream(part):
+                yield part
+
+            context = {"inquiry": inquiry, "history": history, "stream": stream}
+            answer = reply(context)  # directly return the plain answer
+            st.write(f"Assistant: {answer}")
             history.append({"inquiry": inquiry, "answer": answer})
-        
-        st.write(f"Assistant: {answer}")
 
 if __name__ == '__main__':
     main()
